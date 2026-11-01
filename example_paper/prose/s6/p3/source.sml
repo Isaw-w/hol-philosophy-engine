@@ -20,7 +20,7 @@ val _ = new_constant ("Corr", ``:person -> bool``);
 val _ = new_constant ("AcceptEach", ``:bool``);
 (* WR : Williams's realism holds *)
 val _ = new_constant ("WR", ``:bool``);
-(* WilliamsDecides : Williams says whether a legitimate state has authority over a member whose own outlook gives no reason not to resist *)
+(* WilliamsDecides : in the 1995 essay or the 2005 book, Williams says whether a legitimate state has authority over a member whose own outlook gives no reason of authority *)
 val _ = new_constant ("WilliamsDecides", ``:bool``);
 (* SleatQ17 : Sleat writes that [Q17] *)
 val _ = new_constant ("SleatQ17", ``:bool``);

@@ -16,7 +16,7 @@ val _ = new_constant ("Corr", ``:person -> bool``);
 val _ = new_constant ("AcceptEach", ``:bool``);
 (* ExtToward a : externalism about authority holds toward a *)
 val _ = new_constant ("ExtToward", ``:person -> bool``);
-(* PointsFirst : Williams's treatment of dissenters, as Sleat reads it, gives his realism the strong reading *)
+(* PointsFirst : Williams's treatment of dissenters points to the strong reading, and Sleat reads Williams as holding it *)
 val _ = new_constant ("PointsFirst", ``:bool``);
 (* PathB : the second path, letting the group's standard govern authority over every member, is taken *)
 val _ = new_constant ("PathB", ``:bool``);

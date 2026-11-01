@@ -14,11 +14,11 @@ val _ = new_constant ("Claim", ``:person -> bool``);
 val _ = new_constant ("Corr", ``:person -> bool``);
 (* WR : Williams's realism holds *)
 val _ = new_constant ("WR", ``:bool``);
-(* PointsFirst : Williams's treatment of dissenters, as Sleat reads it, gives his realism the strong reading *)
+(* PointsFirst : Williams's treatment of dissenters points to the strong reading, and Sleat reads Williams as holding it *)
 val _ = new_constant ("PointsFirst", ``:bool``);
 (* SupportsBoth : Williams's texts support both horns of the dilemma *)
 val _ = new_constant ("SupportsBoth", ``:bool``);
-(* WilliamsDecides : Williams says whether a legitimate state has authority over a member whose own outlook gives no reason not to resist *)
+(* WilliamsDecides : in the 1995 essay or the 2005 book, Williams says whether a legitimate state has authority over a member whose own outlook gives no reason of authority *)
 val _ = new_constant ("WilliamsDecides", ``:bool``);
 (* SleatQ12 : Sleat writes that [Q12] *)
 val _ = new_constant ("SleatQ12", ``:bool``);

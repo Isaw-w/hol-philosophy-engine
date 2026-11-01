@@ -7,13 +7,13 @@ val _ = new_constant ("GroupInternal", ``:bool``);
 val _ = new_constant ("KeepOurs", ``:bool``);
 (* SomeFalseMS : something that does not make sense to us because we take it to be false made sense to an earlier society *)
 val _ = new_constant ("SomeFalseMS", ``:bool``);
-(* CondANotJust : condition (a) excludes the will of the stronger as a legitimation and says little more about what justifies P *)
+(* CondANotJust : condition (a) says not much more than that coercion requires legitimation and that the will of the stronger is not itself one, and does not settle what justifies P *)
 val _ = new_constant ("CondANotJust", ``:bool``);
 (* DefLevels : a standard is internal to a person or a group when their outlook settles whether it is met, and external to them, or independent of their outlook, when it does not *)
 val _ = new_constant ("DefLevels", ``:bool``);
 (* WilliamsFalse11 : Williams allows that some of what made sense to earlier societies does not make sense to us because we take it to be false (2005, 11) *)
 val _ = new_constant ("WilliamsFalse11", ``:bool``);
-(* WilliamsAxiom : Williams says that might does not imply right (2005, 5-6) and that this principle is indeterminate about what it requires (2005, 23) *)
+(* WilliamsAxiom : Williams says that might does not imply right (2005, 5-6), and that the universal paradigm of injustice, simply in this form, is indeterminate about what it requires and says not much more than that coercion requires legitimation and that the will of the stronger is not itself a legitimation (2005, 23) *)
 val _ = new_constant ("WilliamsAxiom", ``:bool``);
 (* WilliamsOurCase : Williams says that what makes most sense to us is a structure of authority that we think we should accept (2005, 11) *)
 val _ = new_constant ("WilliamsOurCase", ``:bool``);

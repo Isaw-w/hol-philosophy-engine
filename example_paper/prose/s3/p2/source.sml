@@ -14,7 +14,7 @@ val _ = new_constant ("Blames", ``:person -> bool``);
 val _ = new_constant ("Reason", ``:person -> bool``);
 (* WR : Williams's realism holds *)
 val _ = new_constant ("WR", ``:bool``);
-(* WilliamsTie : Williams assumes a close connection between focused blame and the agent's reasons (1995, 40) and concludes that the proleptic mechanism is likely to prove essential to an account of focused blame (1995, 44) *)
+(* WilliamsTie : Williams assumes a close connection between focused blame and the agent's reasons (1995, 41) and concludes that the proleptic mechanism is likely to prove essential to an account of focused blame (1995, 44) *)
 val _ = new_constant ("WilliamsTie", ``:bool``);
 (* WilliamsQ7 : Williams writes that [Q7] *)
 val _ = new_constant ("WilliamsQ7", ``:bool``);

@@ -3,7 +3,7 @@ val _ = new_theory "dsp2_s1p3";
 
 (* SupportsBoth : Williams's texts support both horns of the dilemma *)
 val _ = new_constant ("SupportsBoth", ``:bool``);
-(* WilliamsDecides : Williams says whether a legitimate state has authority over a member whose own outlook gives no reason not to resist *)
+(* WilliamsDecides : in the 1995 essay or the 2005 book, Williams says whether a legitimate state has authority over a member whose own outlook gives no reason of authority *)
 val _ = new_constant ("WilliamsDecides", ``:bool``);
 (* EveryPathPays : every path through the tension gives up one premise of the dilemma *)
 val _ = new_constant ("EveryPathPays", ``:bool``);
