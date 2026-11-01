@@ -6,8 +6,9 @@ This report says where the paper's idea came from and how the paper was made. Pa
 idea, for the paper and for the method, in the author's own words, with what the AI did with each. Part 2 describes
 the HOL engine the paper was built with, and what it proved and checked.
 
-The AI throughout is Claude (Anthropic), working in Claude Code. The author's words are quoted verbatim, with their
-dates; Chinese is followed by an English translation.
+The AI throughout is Claude (Anthropic), working in Claude Code. The author's words are given with their dates. The
+author's English is given with spelling and grammar corrected; Chinese is quoted as written and followed by an
+English translation.
 
 ---
 
@@ -20,35 +21,35 @@ local solutions to basic political problems: a power P exercised over those who 
 J. Realism accepts such solutions on their own terms, and it also criticizes them. On 31 October 2026 the author fixed
 the core of the project as the question why realism has to be internalist, with two pillars:
 
-> "why realism has to be internalism....right?"
+> "We should focus on the core problem: why realism has to be internalist, right?"
 
-> "yes 1. accpet local soltions 2 also criticze them … remember this"
+> "Yes: first, it accepts local solutions; second, it also criticizes them. Remember this."
 
 **The question of this paper.** On 1 November 2026, after the claims of realism and of internalism had been written in
 one shared formal language at the author's direction, the author asked whether Williams's own argument contains a
 dilemma, and whether it can be solved:
 
-> "i want to know whether there is a delima inside williams argument / if yes..have williams solve it..it not..is it
-> possible t solve it? / i've formalized making sense and internalism claims right? if we use share language, it is
-> possible to actually do some argument on this?"
+> "I want to know whether there is a dilemma inside Williams's argument. If there is, has Williams solved it? If not,
+> is it possible to solve it? I have formalized the claims about making sense and internalism, right? If we use the
+> shared language, can we actually argue about this?"
 
 The AI answered in the shared language. With a hard-case dissenter, Williams's commitments clash with the strong
 reading of his acceptance claim, the reading on which making sense gives authority over every member. Williams's
 stated commitments are consistent, and they settle the dilemma on the internalist side. The author then asked which
 way making sense leans:
 
-> "so for williams, either it accept externalism + local solutions or internalism + local soltions right? however,
-> making sense leans to?"
+> "So for Williams, realism accepts either externalism together with local solutions or internalism together with
+> local solutions, right? But which way does making sense lean?"
 
 The AI answered that making sense is internal at the level of the group S and external to any single member, and that
 Williams's own account of its normativity leans to the internalist horn.
 
 **The tension, and the aim of the paper.** The author then fixed the paper's subject and its aim:
 
-> "yes..this is all the paper is about..we are not defense..we just want to tell others well, realism seems to have
-> this problem / it seems it is externalism to indivalual? right..and internalism to a group of "US"... / but
-> internalism is about indivalual..not about group..so there is a tension.. / is there a way to solve this tension? we
-> explore different paths..but never tell what we favour.."
+> "Yes, this is what the whole paper is about. We are not defending a position; we just want to tell others that
+> realism seems to have this problem. Making sense seems to be externalist with respect to the individual, right, and
+> internalist with respect to a group, an 'us'. But internalism is about the individual, not about a group, so there
+> is a tension. Is there a way to resolve it? We explore different paths, but never say which one we favour."
 
 This is the paper. Making sense, the standard by which Williams's realism accepts local solutions, is internal to the
 group and external to the individual member. Williams's internalism about reasons concerns the individual, and through
@@ -59,11 +60,12 @@ favouring any.
 **Instructions on the writing.** The author asked for a paper that is professional and mature, states its case without
 hedging, and favours no path:
 
-> "yes rewrite it...be professional...and mature..no hedge no recognize limit.."
+> "Yes, rewrite it. Be professional and mature: no hedging, and no acknowledging of limitations."
 
 and then for three rounds of refinement:
 
-> "continue refine it three round with good hol formalization and acadmic standard..until you can not...."
+> "Keep refining it for three rounds, with good HOL formalization and to an academic standard, until you cannot
+> improve it any further."
 
 **What the AI did.** The AI read the sources and checked every quotation against them. It drafted the shared formal
 language at the author's direction, and stated the dilemma, its five premises and the six paths. It found the textual
@@ -93,21 +95,22 @@ argument in Besnard and Hunter (*Elements of Argumentation*, 2008):
 
 **Nothing in the HOL without a role.** The author asked for a general detector of idle elements:
 
-> "Nope. Not five of them. A universal detector that some elements in a hole does not play for final argument."
+> "No, not five of them: a universal detector of the elements in a HOL argument that play no part in the final
+> argument."
 
 This became `role_check.py`. Later (29 October 2026) the author extended the rule to the parts of a sentence:
 
-> "no unnecessary part or elements in one sentence, for example, it is, A, not B. Often B does not contribute to the
-> whole HOL. We should abandon"
+> "No unnecessary parts or elements in a sentence, for example 'it is A, not B'. Often B contributes nothing to the
+> HOL as a whole, and we should drop it."
 
 **HOL as the backbone of ordinary academic writing.** On 30 October 2026:
 
-> "normal academic writing should have a template of hol"
+> "Normal academic writing should have a HOL template."
 
 and on 1 November 2026, for the explanatory sentences of a paper:
 
-> "writing itself in hol... it does not have to be super logicial..because many sentences are for explain just like
-> the regular writing, but this can help you to writie clear"
+> "Write the writing itself in HOL. It does not have to be strictly logical, because many sentences are there to
+> explain, just as in ordinary writing, but it helps you write clearly."
 
 So every sentence of the paper, explanatory sentences included, has its place in a paragraph's HOL as an axiom or a
 theorem, in reading order. The logic of an explanatory sentence may be thin; what matters is that the paragraph's
