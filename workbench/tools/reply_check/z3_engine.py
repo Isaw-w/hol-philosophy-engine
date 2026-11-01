@@ -1239,7 +1239,7 @@ def run_engine(ast, source, time_ms, budget_s=900, marco_cap=1000):
     out["untested_sorts"] = sorted(untested)
     out["positions"] = [{"predicate": p, "argument": k + 1, "verdict": verdict(rs), "results": rs}
                         for (p, k), rs in sorted(results.items())]
-    # Misused logic (a hard flaw, the user 2026-10-20: "算硬伤吧"): a declared constant with no definition that takes a
+    # Misused logic (a hard flaw, the user 2026-10-20: "count it as a hard flaw"): a declared constant with no definition that takes a
     # truth value. In every model it is one of the few truth functions of its arguments, so it cannot say "ought",
     # "knows", "possibly" or "because"; whatever its name, two statements with the same truth value become the same
     # to it. A defined truth function (like a defined negation) is fine.
@@ -1267,7 +1267,7 @@ def run_engine(ast, source, time_ms, budget_s=900, marco_cap=1000):
     # The final conclusion asserted rather than proved (begging the question): a theorem named final that is an
     # axiom, so HOL4 checked no step to it (DeepSeek g16_02 and g06_12, 2026-10-21).
     out["final_is_axiom"] = any(ax["name"] == "final" for ax in ast["axioms"])
-    # Contents given as text (a hard flaw, the user 2026-10-21: "当然算硬伤了"): a constant or constructor that makes an
+    # Contents given as text (a hard flaw, the user 2026-10-21: "of course that counts as a hard flaw"): a constant or constructor that makes an
     # eventuality or a content out of a string, such as Content "Renee is warm with the boys". What the content says
     # is then hidden in an unanalysed sentence, so no step can use who does what to whom. A relation between a thing
     # and its wording (TextOf e s : bool) is not this: there the wording is recorded, not used as the content.
@@ -1320,7 +1320,7 @@ def run_engine(ast, source, time_ms, budget_s=900, marco_cap=1000):
     #   restated     the starting point gives the conclusion on its own, without definitions or bridges: the final
     #                repeats a premise ("the decision is yours"), which the user does not count as circular
     #   equivalent   only through definitions or bridges, the starting point says the same as the conclusion in
-    #                other words: a warning, not a flaw (the user, 2026-10-20: "不太行。可以给个警告。")
+    #                other words: a warning, not a flaw (the user, 2026-10-20: "Not really. It can get a warning.")
     #   contained    as equivalent, but the conclusion is only part of what the starting point says (a warning)
     def is_bridge(t):
         h, args = strip_comb(strip_forall(t)[1])

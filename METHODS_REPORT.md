@@ -7,7 +7,7 @@ idea, for the paper and for the method, in the author's own words, with what the
 the HOL engine the paper was built with, and what it proved and checked.
 
 The AI throughout is Claude (Anthropic), working in Claude Code. The author's words are given with their dates. The
-author's English is given with spelling and grammar corrected; Chinese is quoted as written and followed by an
+author's English is given with spelling and grammar corrected, and lines the author wrote in Chinese are given in
 English translation.
 
 ---
@@ -79,19 +79,15 @@ double bind, and then to rewrite the paper as a neutral account of the tension.
 **The paper itself is written in HOL.** The method is the author's. On 21 October 2026, correcting the AI, which had
 taken the method to formalize a finished text:
 
-> "不是的。反了。论文本身就用 HOL 去写。然后转换成文字稍微 Polish 就够了。"
->
-> (No. It is the other way round. The paper itself is written in HOL. Then it is converted into text, and a light
-> polish is enough.)
+> "No. It is the other way round. The paper itself is written in HOL. Then it is converted into text, and a light
+> polish is enough."
 
 **Every argument is minimal.** The same day, the author set the standard for the paper's core, the definition of an
 argument in Besnard and Hunter (*Elements of Argumentation*, 2008):
 
-> "组前提加一个结论，前提彼此一致、能推出结论，而且是最小的，去掉任何一条都推不出来。……这个论文的核心要遵守这个。然后润色的时候可以加读起来流畅的句子。"
->
-> (A set of premises plus a conclusion: the premises are consistent with one another, they entail the conclusion, and
-> they are minimal, so that removing any one of them, the conclusion no longer follows. … The core of the paper must
-> keep to this. Then, in the polish, sentences may be added that make it read fluently.)
+> "A set of premises plus a conclusion: the premises are consistent with one another, they entail the conclusion,
+> and they are minimal, so that if any one of them is removed, the conclusion no longer follows. … The core of the
+> paper must keep to this. Then, in the polish, sentences may be added that make it read fluently."
 
 **Nothing in the HOL without a role.** The author asked for a general detector of idle elements:
 

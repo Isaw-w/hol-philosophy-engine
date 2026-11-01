@@ -15,7 +15,7 @@ from round2 import execute_call
 
 BASE = Path(__file__).resolve().parent.parent
 digest = lambda b: hashlib.sha256(b).hexdigest()
-MAX_FIX_ROUNDS = 3          # the user, 2026-10-20: "那就加个上限，最多三轮" (HOL4 errors and checked flaws together)
+MAX_FIX_ROUNDS = 3          # the user, 2026-10-20: "Then add a limit: at most three rounds" (HOL4 errors and checked flaws together)
 
 
 def fix_rounds_before(src):
@@ -60,7 +60,7 @@ def main():
     ap.add_argument("--host", default="mini"); ap.add_argument("--timeout", type=int, default=1200)
     ap.add_argument("--message", help="send this file's text as it is (a user-approved message), e.g. a checked flaw")
     ap.add_argument("--extra-rounds", type=int, default=0,
-                    help="rounds beyond the limit, only when the user gives them (2026-10-20, GLM on fu178: '再给他三轮')")
+                    help="rounds beyond the limit, only when the user gives them (2026-10-20, GLM on fu178: 'give it three more rounds')")
     a = ap.parse_args()
     src, out = Path(a.source).resolve(), Path(a.out).resolve()
     done = fix_rounds_before(src)
