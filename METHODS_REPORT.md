@@ -2,19 +2,44 @@
 
 1 November 2026
 
-This report says where the paper's idea came from and how the paper was made. Part 1 sets out the author's original
-idea, for the paper and for the method, in the author's own words, with what the AI did with each. Part 2 describes
-the HOL engine the paper was built with, and what it proved and checked.
+Code and HOL theories: https://github.com/Isaw-w/hol-philosophy-engine
 
-The AI throughout is Claude (Anthropic), working in Claude Code. The author's words are given with their dates. The
-author's English is given with spelling and grammar corrected, and lines the author wrote in Chinese are given in
-English translation.
+This report has two parts. Part I is written by the author. Part II is written by the model, Claude (Anthropic),
+working in Claude Code. It records the author's original idea in the author's own words, with what the model did
+with it, and describes the HOL engine the paper was built with and what it proved and checked.
 
 ---
 
-## 1. The original idea
+## Part I. Human written methods report
 
-### 1.1 The idea of the paper
+I hold a master's degree in philosophy, and I have worked as a professional researcher at a language model company.
+
+I have long wanted to use higher-order logic to write philosophical arguments. Before language models, this was
+impractical. I also think that philosophy is full of misunderstandings, with philosophers misunderstanding one
+another, and that if we can make arguments in accurate language, we may be able to reduce them. The HOL engine is my
+own project, for formalizing conceptual language.
+
+The idea of this paper comes from my own essay and from my research in political philosophy. It concerns Williams:
+his internalism may not be consistent with his understanding of making sense. So I formalized making sense, tried to
+formalize several versions of internalism, and wanted to see whether the two can be reconciled. This paper is the
+result.
+
+I set the questions and the aim for the models. The language the models produced was very odd, and it is hard to get
+a model to write well simply by letting it generate sentences freely. So I thought that if the model wrote free-form
+higher-order logic (HOL), the oddness in its language might be reduced. That is why this paper is written in HOL.
+
+Philosophers often have baroque or hidden premises in their arguments, and I think this is a major source of
+misunderstanding. People are always left guessing what your hidden premises are. In this paper, though, I want to list
+all my hidden premises. Since it is written in higher-order logic, it is easy to lay them all out. That way, people
+who question my paper can identify its weaknesses by looking at my premises.
+
+---
+
+## Part II. Written by the model
+
+### 1. The original idea
+
+#### 1.1 The idea of the paper
 
 **Political realism is about local solutions.** The author's framing of political realism is that it deals with
 local solutions to basic political problems: a power P exercised over those who live under it, S, with a legitimation
@@ -33,7 +58,7 @@ dilemma, and whether it can be solved:
 > is it possible to solve it? I have formalized the claims about making sense and internalism, right? If we use the
 > shared language, can we actually argue about this?"
 
-The AI answered in the shared language. With a hard-case dissenter, Williams's commitments clash with the strong
+The model answered in the shared language. With a hard-case dissenter, Williams's commitments clash with the strong
 reading of his acceptance claim, the reading on which making sense gives authority over every member. Williams's
 stated commitments are consistent, and they settle the dilemma on the internalist side. The author then asked which
 way making sense leans:
@@ -41,7 +66,7 @@ way making sense leans:
 > "So for Williams, realism accepts either externalism together with local solutions or internalism together with
 > local solutions, right? But which way does making sense lean?"
 
-The AI answered that making sense is internal at the level of the group S and external to any single member, and that
+The model answered that making sense is internal at the level of the group S and external to any single member, and that
 Williams's own account of its normativity leans to the internalist horn.
 
 **The tension, and the aim of the paper.** The author then fixed the paper's subject and its aim:
@@ -67,16 +92,16 @@ and then for three rounds of refinement:
 > "Keep refining it for three rounds, with good HOL formalization and to an academic standard, until you cannot
 > improve it any further."
 
-**What the AI did.** The AI read the sources and checked every quotation against them. It drafted the shared formal
+**What the model did.** The model read the sources and checked every quotation against them. It drafted the shared formal
 language at the author's direction, and stated the dilemma, its five premises and the six paths. It found the textual
 support and the textual costs of each path in Williams and Sleat. It wrote the HOL and the prose, and ran every check
-described in Part 2. Where the AI offered options, the author chose; each choice is recorded in the session. For
+described in Part 2. Where the model offered options, the author chose; each choice is recorded in the session. For
 example, the author chose to extend the corrected outlook to Williams's sound deliberative route, to answer Sleat's
 double bind, and then to rewrite the paper as a neutral account of the tension.
 
-### 1.2 The idea of the method
+#### 1.2 The idea of the method
 
-**The paper itself is written in HOL.** The method is the author's. On 21 October 2026, correcting the AI, which had
+**The paper itself is written in HOL.** The method is the author's. On 21 October 2026, correcting the model, which had
 taken the method to formalize a finished text:
 
 > "No. It is the other way round. The paper itself is written in HOL. Then it is converted into text, and a light
@@ -114,11 +139,11 @@ sentences and its HOL correspond one to one, and that the HOL is checked.
 
 ---
 
-## 2. The HOL engine
+### 2. The HOL engine
 
-### 2.1 What the engine is
+#### 2.1 What the engine is
 
-The engine has two parts. The code is in this repository.
+The engine has three parts. The code is at https://github.com/Isaw-w/hol-philosophy-engine.
 
 **The HOL workbench** (`workbench/`). It was built for an earlier experiment in which models argue in HOL4, and it
 supplies the checking machinery:
@@ -149,7 +174,28 @@ supplies the checking machinery:
 - `paper_graph.py` checks that a paper's files form one argument: earlier conclusions are later premises, each reply
   refutes the premise it answers, and the end answers the beginning.
 
-### 2.2 How this paper was built
+**The verify command** (`holverify/`), which makes the engine usable on any argument:
+
+- `holverify ARGUMENT.sml` takes any HOL4 theory, with the premises as axioms and the conclusion as a theorem.
+- It checks five things:
+  - whether HOL4 proves the conclusion;
+  - whether the premises are consistent;
+  - whether every premise is needed;
+  - whether any axiom is cut off from the conclusion;
+  - whether there is a hard flaw.
+- Its verdict follows Besnard and Hunter: an argument is a consistent, minimal set of premises that proves its claim.
+- It writes a report with the verdict, the premises that do no work, the plain English reading and the full Z3
+  report.
+- The prover host and the path of HOL4 are settings, so it runs with HOL4 on the same machine or on another machine
+  over ssh.
+- Five example arguments, each with the verdict it should get, test it:
+  - a valid argument;
+  - a valid argument whose conclusion is not called `final`;
+  - an argument with an idle premise;
+  - an argument with inconsistent premises;
+  - an argument whose conclusion does not follow.
+
+#### 2.2 How this paper was built
 
 1. **Shared language.** The claims of realism (Claims 1 and 3), internalism and externalism about authority, and the
    understandings of making sense were written in one notation: P, S, J, the historical and cultural circumstances of
@@ -179,8 +225,37 @@ supplies the checking machinery:
    - Round 1 moved the core results from stipulation to proof and corrected six paraphrases of the sources.
    - Round 2 defined "internal" and "external" once and introduced the term "reason of authority".
    - Round 3 checked each sentence against its HOL.
+8. **Check against the sources.** After the refinement, every attribution was checked three times against Williams
+   1995, Williams 2005 and Sleat 2013:
+   - the 17 quotations, word for word, with their printed pages;
+   - 25 paraphrased passages, each read in its own paragraph;
+   - the readings the argument rests on.
 
-### 2.3 What was proved and checked
+   Six attributions were corrected:
+   - the page of Williams's assumption tying focused blame to the agent's reasons, which is 41, not 40;
+   - a sentence that runs across pages 135 and 136, which had been cited as 136 alone;
+   - page 23, now stated in Williams's own terms;
+   - what Sleat's reading of Williams rests on, which is Williams's denial that legitimacy depends on individuals'
+     consent;
+   - the claim that Williams does not decide the question, now limited to the 1995 essay and the 2005 book;
+   - the role of the hermeneutical principle, which Williams uses to relate making sense for others to making sense
+     for ourselves, and which he states "roughly".
+
+   The corrected paragraphs were checked again by HOL4 and the gate.
+9. **Every premise listed.** Every axiom of the 28 paragraph theories was collected, 161 in all, and Z3 separated the
+   82 that restate results of earlier paragraphs from the 79 that enter the argument as premises. One of these only
+   states the paper's plan. The paper's appendix lists the other 78 by kind:
+   - 28 readings, where the paper moves from a text to a claim;
+   - 4 claims of the paper's own;
+   - 4 definitions, with 2 more that live in the meaning of a term;
+   - 6 characterizations of the paths;
+   - 2 suppositions about the hard-case dissenter;
+   - 34 statements of what the sources say, the 17 quotations among them.
+
+   The appendix also says what the logic cannot check: the meaning of its primitive terms, and the truth of its
+   premises.
+
+#### 2.3 What was proved and checked
 
 **Proved in HOL4** (`dissenter_core.sml`):
 
@@ -196,14 +271,19 @@ supplies the checking machinery:
 - All 28 paragraph theories are proved by HOL4 and pass the gate.
 - All the paper's premises, taken together, are consistent.
 - The paper settles none of the six paths.
-- All 17 quotations match the source texts.
+- All 17 quotations match the source texts word for word, on the pages cited.
+- Every premise of the argument is listed in the paper's appendix (step 9).
+- Every attribution to Williams and Sleat was checked against its page in context, and six were corrected
+  (step 8).
 
 **What the checks cover.** HOL4 and Z3 check form: whether a conclusion follows, whether premises are consistent,
 whether a premise or a piece of one does any work. Whether a premise is true, and whether a reading of a text is
-faithful, was settled by reading the sources in context. Each attribution to Williams and Sleat was checked against
-the page it cites.
+faithful, was settled by reading the sources in context. Each attribution to Williams and Sleat was checked three
+times: the quotations word for word, the paraphrases against their paragraphs, and the readings the argument rests
+on.
 
-### 2.4 Running the engine
+#### 2.4 Running the engine
 
-See [README.md](README.md). The engine needs Python 3 with `z3-solver`, and HOL4 on a host reachable by ssh. None of
-the checks calls a language model.
+Any argument written in HOL4 can be checked with `holverify ARGUMENT.sml`. Installation and settings are in the
+repository's README. The engine needs Python 3 with `z3-solver`, and HOL4 on the same machine or on a host
+reachable by ssh. None of the checks calls a language model.
