@@ -47,7 +47,8 @@ import argparse, itertools, json, re, shlex, subprocess, sys, time, uuid
 from pathlib import Path
 
 HERE = Path(__file__).resolve()
-VENV_PY = "~/thick_training/venv_logreco/bin/python3"     # z3-solver 5.1.0 on the mini
+import os
+VENV_PY = os.environ.get("HOLVERIFY_REMOTE_PYTHON", "~/thick_training/venv_logreco/bin/python3")  # z3-solver on the host
 
 
 class Untranslatable(Exception):
@@ -1710,7 +1711,7 @@ def main():
     if a.local:
         out = run_engine(json.loads((nc / "kernel_ast.json").read_text()), (nc / "source.sml").read_text(), a.time_ms, a.budget_s)
     else:
-        remote = "thick_training/z3_engine/" + uuid.uuid4().hex
+        remote = os.environ.get("HOLVERIFY_Z3_REMOTE_DIR", "thick_training/z3_engine").rstrip("/") + "/" + uuid.uuid4().hex
         subprocess.run(["ssh", "-o", "BatchMode=yes", a.host, "mkdir -p " + shlex.quote(remote)], check=True)
         subprocess.run(["scp", "-q", str(HERE), str(HERE.parent / "hol_semantics.py"), str(nc / "kernel_ast.json"), str(nc / "source.sml"), f"{a.host}:{remote}/"], check=True)
         cmd = f"cd {shlex.quote(remote)} && {VENV_PY} z3_engine.py x --worker --time-ms {a.time_ms} --budget-s {a.budget_s}"

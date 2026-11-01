@@ -1,3 +1,5 @@
 __pycache__/
 *.pyc
 native_check/
+holverify_out/
+*.egg-info/

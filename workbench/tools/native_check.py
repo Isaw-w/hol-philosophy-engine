@@ -4,6 +4,7 @@
   python3 tools/native_check.py MyTheory.thy --prover isabelle --out checks/fresh-name
 """
 import argparse
+import os
 from datetime import datetime, timezone
 import hashlib
 import json
@@ -98,7 +99,9 @@ def check(source, out, prover, host="mini", block=None, theory_name=None, timeou
         (out / exporter.name).write_bytes(exporter.read_bytes())
         uploads.append(str(out / exporter.name))
     local = host == "local"                             # running on the mini itself (mini_scheduler.py): no ssh
-    remote = str(out) if local else "thick_training/native_hol_checks/" + uuid.uuid4().hex
+    remote_base = os.environ.get("HOLVERIFY_REMOTE_DIR", "thick_training/native_hol_checks")
+    remote = str(out) if local else remote_base.rstrip("/") + "/" + uuid.uuid4().hex
+    hol_arg = (["--hol4", os.environ["HOLVERIFY_HOL4"]] if prover == "hol4" and os.environ.get("HOLVERIFY_HOL4") else [])
     manifest = {"created_utc": datetime.now(timezone.utc).isoformat(), "original_file": str(source),
                 "original_sha256": hashlib.sha256(raw).hexdigest(),
                 "executed_source_sha256": hashlib.sha256(code.encode()).hexdigest(),
@@ -110,7 +113,7 @@ def check(source, out, prover, host="mini", block=None, theory_name=None, timeou
     if local:                                           # the worker runs in out itself and writes its results there
         import sys
         command = [sys.executable, "native_worker.py", "--prover", prover, "--timeout", str(timeout)] + \
-                  (["--export-ast"] if prover == "hol4" else [])
+                  (["--export-ast"] if prover == "hol4" else []) + hol_arg
         run = subprocess.run(command, cwd=out, capture_output=True, text=True, timeout=timeout + 600)
     else:
         subprocess.run(["ssh", "-o", "BatchMode=yes", host, "mkdir -p " + shlex.quote(remote)], check=True)
@@ -118,6 +121,8 @@ def check(source, out, prover, host="mini", block=None, theory_name=None, timeou
         command = "cd " + shlex.quote(remote) + " && python3 native_worker.py --prover " + prover + " --timeout " + str(timeout)
         if prover == "hol4":
             command += " --export-ast"
+        if hol_arg:
+            command += " --hol4 " + shlex.quote(hol_arg[1])
         run = subprocess.run(["ssh", "-o", "BatchMode=yes", "-o", "ServerAliveInterval=30", host, command],
                              capture_output=True, text=True, timeout=timeout + 600)
     (out / "transport.log").write_text(run.stdout + run.stderr)

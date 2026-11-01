@@ -13,8 +13,8 @@ import json, shutil, subprocess, sys, threading
 from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 
-HOL = Path("/Users/cy/Desktop/Fun/possibility_calculator/Learn/experiments/moral-reasoning/experiments/data/"
-           "thick_training/difficult_advice_v2/cloud_gen/hol")
+import os
+HOL = Path(os.environ.get("HOLVERIFY_WORKBENCH", Path(__file__).resolve().parent.parent / "workbench"))
 SLOTS = 9                                   # processes on the mini at once; one core left for the system
 OLD = ("hidden_premises", "isolated_parts", "argument_checks")   # the earlier checkers, replaced by the Z3 engine
 sys.path.insert(0, str(HOL / "tools"))

@@ -19,8 +19,8 @@ Every edit is written to prose/polish_log.txt.
 import json, re, shutil, subprocess, sys
 from pathlib import Path
 
-HOL = Path("/Users/cy/Desktop/Fun/possibility_calculator/Learn/experiments/moral-reasoning/experiments/data/"
-           "thick_training/difficult_advice_v2/cloud_gen/hol")
+import os
+HOL = Path(os.environ.get("HOLVERIFY_WORKBENCH", Path(__file__).resolve().parent.parent / "workbench"))
 PROMPT = ("Convert these mechanical sentences into natural language. Keep each label and each bracketed token, "
           "and keep the meaning of each sentence exactly.\n\n")
 NAME = re.compile(r"^p(\d+)_(\d+)_(\d+)$")

@@ -21,8 +21,8 @@ must be proved by a file that comes later. Writes DIR/graph_check/report.txt and
 import json, shutil, sys
 from pathlib import Path
 
-HOL = Path("/Users/cy/Desktop/Fun/possibility_calculator/Learn/experiments/moral-reasoning/experiments/data/"
-           "thick_training/difficult_advice_v2/cloud_gen/hol")
+import os
+HOL = Path(os.environ.get("HOLVERIFY_WORKBENCH", Path(__file__).resolve().parent.parent / "workbench"))
 sys.path.insert(0, str(HOL / "tools"))
 from native_check import check  # noqa: E402
 

@@ -1,0 +1,12 @@
+[project]
+name = "holverify"
+version = "0.1.0"
+description = "Verify any argument written in HOL4: HOL4 proof, Z3 consistency and minimality, plain English"
+requires-python = ">=3.10"
+dependencies = ["z3-solver"]
+
+[project.scripts]
+holverify = "holverify.verify:main"
+
+[tool.setuptools]
+packages = ["holverify"]
